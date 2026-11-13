@@ -1,0 +1,128 @@
+<Page x:Class="TicketOffice.AppData.Pages.CatalogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:TicketOffice.AppData.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Language="ru-RU"
+      Title="CatalogPage" Loaded="Page_Loaded">
+
+    <Grid Background="#F8FAFC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Поиск, фильтры и сортировка-->
+        <WrapPanel Grid.Row="0" Background="#FEF3C7">
+            <TextBlock Text="Поиск:" FontSize="16" VerticalAlignment="Center" Margin="10 0 0 0"/>
+            <TextBox x:Name="tbSearch" Width="170" MaxLength="50" FontSize="16" Height="28" Margin="5" TextChanged="tbSearch_TextChanged"/>
+            <ComboBox x:Name="cbCategory" Width="170" DisplayMemberPath="categoryEvents1" FontSize="16" Height="28" Margin="5" SelectionChanged="cbCategory_SelectionChanged"/>
+            <ComboBox x:Name="cbSort" Width="200" FontSize="16" Height="28" Margin="5" SelectionChanged="cbSort_SelectionChanged"/>
+            <DatePicker x:Name="dpDate" Width="140" FontSize="14" VerticalAlignment="Center" Margin="5" ToolTip="Дата мероприятия" SelectedDateChanged="dpDate_SelectedDateChanged"/>
+            <CheckBox x:Name="chbOnlyFree" Content="Только свободные" FontSize="14" IsChecked="True" VerticalAlignment="Center" Margin="5" Click="chbOnlyFree_Click"/>
+            <Button x:Name="btnResetFilters" Content="Сбросить" Background="White" FontSize="16" Height="30" Margin="5" Padding="10 0 10 0" Click="btnResetFilters_Click"/>
+        </WrapPanel>
+
+        <!--Список билетов-->
+        <ListView x:Name="lvTickets" Grid.Row="1" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="lvTickets_MouseDoubleClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border x:Name="brTicket" Background="White" BorderBrush="#78350F" BorderThickness="1" Margin="3" Padding="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="170"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding Schedule.Events.image, TargetNullValue=/Images/poster.png, FallbackValue=/Images/poster.png}"
+                                   Grid.Column="0"
+                                   Width="90"
+                                   Height="90"
+                                   Margin="5"/>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock x:Name="tbEvent" TextWrapping="Wrap" Margin="0 0 0 5" FontSize="16" FontWeight="SemiBold">
+                                    <Run Text="{Binding Schedule.Events.nameEvent, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run Text="Категория:"/>
+                                    <Run Text="{Binding Schedule.Events.CategoryEvents.categoryEvents1, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run Text="Дата:"/>
+                                    <Run Text="{Binding Schedule.datetime, StringFormat='{}{0:dd.MM.yyyy HH:mm}', Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run Text="Площадка:"/>
+                                    <Run Text="{Binding Schedule.Halls.Plases.namePlace, Mode=OneWay}"/>
+                                    <Run Text="| Зал:"/>
+                                    <Run Text="{Binding Schedule.Halls.hall, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run Text="Ряд:"/>
+                                    <Run Text="{Binding row_number, Mode=OneWay}"/>
+                                    <Run Text="| Место:"/>
+                                    <Run Text="{Binding seat_number, Mode=OneWay}"/>
+                                    <Run Text="| Билет:"/>
+                                    <Run Text="{Binding CategoryTickets.categoryTicket, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run Text="Статус:"/>
+                                    <Run Text="{Binding TicketStatuses.ticketStatus, Mode=OneWay}"/>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock TextAlignment="Right" Foreground="Gray" TextDecorations="Strikethrough"
+                                           Visibility="{Binding HasDiscount, Converter={StaticResource BoolToVisibility}}">
+                                    <Run Text="{Binding oldPrice, StringFormat='{}{0:N2}', Mode=OneWay}"/>
+                                    <Run Text="руб."/>
+                                </TextBlock>
+                                <TextBlock TextAlignment="Right" Foreground="Red"
+                                           Visibility="{Binding HasDiscount, Converter={StaticResource BoolToVisibility}}">
+                                    <Run Text="Скидка"/>
+                                    <Run Text="{Binding discountPercent, StringFormat='{}{0}%', Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock x:Name="tbPrice" TextAlignment="Right" FontSize="18">
+                                    <Run Text="{Binding NewPrice, StringFormat='{}{0:N2}', Mode=OneWay}"/>
+                                    <Run Text="руб."/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <DataTemplate.Triggers>
+                        <!--Билеты дороже 1000 выделяются цветом и жирным шрифтом-->
+                        <DataTrigger Binding="{Binding IsExpensive}" Value="True">
+                            <Setter TargetName="brTicket" Property="Background" Value="#FDE68A"/>
+                            <Setter TargetName="tbPrice" Property="FontWeight" Value="Bold"/>
+                            <Setter TargetName="tbEvent" Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--Кнопки-->
+        <Grid Grid.Row="2" Background="#FEF3C7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="tbCount" Grid.Column="0" FontSize="14" VerticalAlignment="Center" Margin="10 0 10 0"/>
+            <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                <Button x:Name="btnAddTicket" Content="Добавить" Background="White" FontSize="16" Height="30" Margin="5" Padding="10 0 10 0" Click="btnAddTicket_Click"/>
+                <Button x:Name="btnEditTicket" Content="Изменить" Background="White" FontSize="16" Height="30" Margin="5" Padding="10 0 10 0" Click="btnEditTicket_Click"/>
+                <Button x:Name="btnDeleteTicket" Content="Удалить" Background="White" FontSize="16" Height="30" Margin="5" Padding="10 0 10 0" Click="btnDeleteTicket_Click"/>
+                <Button x:Name="btnAddToCart" Content="В корзину" Background="White" FontSize="16" Height="30" Margin="5" Padding="10 0 10 0" Click="btnAddToCart_Click"/>
+                <Button x:Name="btnCart" Content="Корзина" Background="White" FontSize="16" Height="30" Margin="5" Padding="10 0 10 0" Click="btnCart_Click"/>
+                <Button x:Name="btnBack" Content="Назад" Background="White" FontSize="16" Height="30" Margin="5" Padding="10 0 10 0" Click="btnBack_Click"/>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Page>

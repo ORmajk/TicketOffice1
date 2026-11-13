@@ -1,0 +1,1170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TicketOfficeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoryEvents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="categoryEvents" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CategoryPlases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="categoryPlace" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CategoryTickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="categoryTicket" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nameEvent" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="id_categoryEvent" Type="int" />
+          <Property Name="id_organizer" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Halls">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="hall" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_place" Type="int" />
+        </EntityType>
+        <EntityType Name="MethodPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="methodPay" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="dateOrder" Type="date" />
+          <Property Name="sum" Type="float" />
+          <Property Name="id_orderStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ticketStatuses" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderTickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_order" Type="int" />
+          <Property Name="id_ticket" Type="int" />
+        </EntityType>
+        <EntityType Name="Organizers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="organizer" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_order" Type="int" />
+          <Property Name="datePay" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_methodPay" Type="int" />
+          <Property Name="id_stausPay" Type="int" />
+        </EntityType>
+        <EntityType Name="Plases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="namePlace" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_categoryPlace" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_hall" Type="int" />
+          <Property Name="id_event" Type="int" />
+          <Property Name="datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StausPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="statusPay" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nameTicket" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_categoryTicket" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="row_number" Type="int" />
+          <Property Name="seat_number" Type="int" />
+          <Property Name="id_ticketStatus" Type="int" />
+          <Property Name="id_shedule" Type="int" />
+          <Property Name="oldPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="discountPercent" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TicketStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ticketStatus" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fio" Type="nvarchar" MaxLength="255" />
+          <Property Name="mail" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="number" Type="nvarchar" MaxLength="255" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_role" Type="int" />
+        </EntityType>
+        <Association Name="FK_Events_CategoryEvents">
+          <End Role="CategoryEvents" Type="Self.CategoryEvents" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryEvents">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="id_categoryEvent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Organizers">
+          <End Role="Organizers" Type="Self.Organizers" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="id_organizer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OrderStatus">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_orderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTickets_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderTickets" Type="Self.OrderTickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderTickets">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTickets_Tickets">
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="0..1" />
+          <End Role="OrderTickets" Type="Self.OrderTickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tickets">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderTickets">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_MethodPay">
+          <End Role="MethodPay" Type="Self.MethodPay" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="id_methodPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_StausPay">
+          <End Role="StausPay" Type="Self.StausPay" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StausPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="id_stausPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plases_CategoryPlases">
+          <End Role="CategoryPlases" Type="Self.CategoryPlases" Multiplicity="0..1" />
+          <End Role="Plases" Type="Self.Plases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryPlases">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Plases">
+              <PropertyRef Name="id_categoryPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Halls_Plases">
+          <End Role="Plases" Type="Self.Plases" Multiplicity="0..1" />
+          <End Role="Halls" Type="Self.Halls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plases">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Halls">
+              <PropertyRef Name="id_place" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="id_event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Halls">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="id_hall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_CategoryTickets">
+          <End Role="CategoryTickets" Type="Self.CategoryTickets" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTickets">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_categoryTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_shedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_TicketStatuses1">
+          <End Role="TicketStatuses" Type="Self.TicketStatuses" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_ticketStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TicketOfficeModelContainer">
+          <EntitySet Name="CategoryEvents" EntityType="Self.CategoryEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryPlases" EntityType="Self.CategoryPlases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryTickets" EntityType="Self.CategoryTickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Halls" EntityType="Self.Halls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MethodPay" EntityType="Self.MethodPay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderTickets" EntityType="Self.OrderTickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organizers" EntityType="Self.Organizers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plases" EntityType="Self.Plases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StausPay" EntityType="Self.StausPay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketStatuses" EntityType="Self.TicketStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Events_CategoryEvents" Association="Self.FK_Events_CategoryEvents">
+            <End Role="CategoryEvents" EntitySet="CategoryEvents" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Organizers" Association="Self.FK_Events_Organizers">
+            <End Role="Organizers" EntitySet="Organizers" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OrderStatus" Association="Self.FK_Orders_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTickets_Orders" Association="Self.FK_OrderTickets_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderTickets" EntitySet="OrderTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTickets_Tickets" Association="Self.FK_OrderTickets_Tickets">
+            <End Role="Tickets" EntitySet="Tickets" />
+            <End Role="OrderTickets" EntitySet="OrderTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_MethodPay" Association="Self.FK_Pay_MethodPay">
+            <End Role="MethodPay" EntitySet="MethodPay" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_Orders" Association="Self.FK_Pay_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_StausPay" Association="Self.FK_Pay_StausPay">
+            <End Role="StausPay" EntitySet="StausPay" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plases_CategoryPlases" Association="Self.FK_Plases_CategoryPlases">
+            <End Role="CategoryPlases" EntitySet="CategoryPlases" />
+            <End Role="Plases" EntitySet="Plases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Halls_Plases" Association="Self.FK_Halls_Plases">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Plases" EntitySet="Plases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Events" Association="Self.FK_Schedule_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Halls" Association="Self.FK_Schedule_Halls">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_CategoryTickets" Association="Self.FK_Tickets_CategoryTickets">
+            <End Role="CategoryTickets" EntitySet="CategoryTickets" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_Schedule" Association="Self.FK_Tickets_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_TicketStatuses1" Association="Self.FK_Tickets_TicketStatuses1">
+            <End Role="TicketStatuses" EntitySet="TicketStatuses" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TicketOfficeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CategoryEvents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="categoryEvents1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_CategoryEvents" FromRole="CategoryEvents" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="CategoryPlases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="categoryPlace" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Plases" Relationship="Self.FK_Plases_CategoryPlases" FromRole="CategoryPlases" ToRole="Plases" />
+        </EntityType>
+        <EntityType Name="CategoryTickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="categoryTicket" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Tickets_CategoryTickets" FromRole="CategoryTickets" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nameEvent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_categoryEvent" Type="Int32" />
+          <Property Name="id_organizer" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryEvents" Relationship="Self.FK_Events_CategoryEvents" FromRole="Events" ToRole="CategoryEvents" />
+          <NavigationProperty Name="Organizers" Relationship="Self.FK_Events_Organizers" FromRole="Events" ToRole="Organizers" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Events" FromRole="Events" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Halls">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="hall" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_place" Type="Int32" />
+          <NavigationProperty Name="Plases" Relationship="Self.FK_Halls_Plases" FromRole="Halls" ToRole="Plases" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Halls" FromRole="Halls" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="MethodPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="methodPay1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Pay_MethodPay" FromRole="MethodPay" ToRole="Pay" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="dateOrder" Type="DateTime" Precision="0" />
+          <Property Name="sum" Type="Double" />
+          <Property Name="id_orderStatus" Type="Int32" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.FK_Orders_OrderStatus" FromRole="Orders" ToRole="OrderStatus" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+          <NavigationProperty Name="OrderTickets" Relationship="Self.FK_OrderTickets_Orders" FromRole="Orders" ToRole="OrderTickets" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Pay_Orders" FromRole="Orders" ToRole="Pay" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ticketStatuses" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_OrderStatus" FromRole="OrderStatus" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderTickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_order" Type="Int32" />
+          <Property Name="id_ticket" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderTickets_Orders" FromRole="OrderTickets" ToRole="Orders" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_OrderTickets_Tickets" FromRole="OrderTickets" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="Organizers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="organizer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_Organizers" FromRole="Organizers" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_order" Type="Int32" />
+          <Property Name="datePay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_methodPay" Type="Int32" />
+          <Property Name="id_stausPay" Type="Int32" />
+          <NavigationProperty Name="MethodPay" Relationship="Self.FK_Pay_MethodPay" FromRole="Pay" ToRole="MethodPay" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Pay_Orders" FromRole="Pay" ToRole="Orders" />
+          <NavigationProperty Name="StausPay" Relationship="Self.FK_Pay_StausPay" FromRole="Pay" ToRole="StausPay" />
+        </EntityType>
+        <EntityType Name="Plases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="namePlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_categoryPlace" Type="Int32" />
+          <NavigationProperty Name="CategoryPlases" Relationship="Self.FK_Plases_CategoryPlases" FromRole="Plases" ToRole="CategoryPlases" />
+          <NavigationProperty Name="Halls" Relationship="Self.FK_Halls_Plases" FromRole="Plases" ToRole="Halls" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_hall" Type="Int32" />
+          <Property Name="id_event" Type="Int32" />
+          <Property Name="datetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Schedule_Events" FromRole="Schedule" ToRole="Events" />
+          <NavigationProperty Name="Halls" Relationship="Self.FK_Schedule_Halls" FromRole="Schedule" ToRole="Halls" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Tickets_Schedule" FromRole="Schedule" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="StausPay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="statusPay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Pay_StausPay" FromRole="StausPay" ToRole="Pay" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nameTicket" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_categoryTicket" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="row_number" Type="Int32" />
+          <Property Name="seat_number" Type="Int32" />
+          <Property Name="id_ticketStatus" Type="Int32" />
+          <Property Name="id_shedule" Type="Int32" />
+          <Property Name="oldPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="discountPercent" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryTickets" Relationship="Self.FK_Tickets_CategoryTickets" FromRole="Tickets" ToRole="CategoryTickets" />
+          <NavigationProperty Name="OrderTickets" Relationship="Self.FK_OrderTickets_Tickets" FromRole="Tickets" ToRole="OrderTickets" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Tickets_Schedule" FromRole="Tickets" ToRole="Schedule" />
+          <NavigationProperty Name="TicketStatuses" Relationship="Self.FK_Tickets_TicketStatuses1" FromRole="Tickets" ToRole="TicketStatuses" />
+        </EntityType>
+        <EntityType Name="TicketStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ticketStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_Tickets_TicketStatuses1" FromRole="TicketStatuses" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fio" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="number" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_role" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_Events_CategoryEvents">
+          <End Role="CategoryEvents" Type="Self.CategoryEvents" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryEvents">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="id_categoryEvent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plases_CategoryPlases">
+          <End Role="CategoryPlases" Type="Self.CategoryPlases" Multiplicity="0..1" />
+          <End Role="Plases" Type="Self.Plases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryPlases">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Plases">
+              <PropertyRef Name="id_categoryPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_CategoryTickets">
+          <End Role="CategoryTickets" Type="Self.CategoryTickets" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTickets">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_categoryTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Organizers">
+          <End Role="Organizers" Type="Self.Organizers" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="id_organizer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="id_event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Halls_Plases">
+          <End Role="Plases" Type="Self.Plases" Multiplicity="0..1" />
+          <End Role="Halls" Type="Self.Halls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plases">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Halls">
+              <PropertyRef Name="id_place" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_MethodPay">
+          <End Role="MethodPay" Type="Self.MethodPay" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MethodPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="id_methodPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OrderStatus">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_orderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTickets_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderTickets" Type="Self.OrderTickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderTickets">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTickets_Tickets">
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="0..1" />
+          <End Role="OrderTickets" Type="Self.OrderTickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tickets">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderTickets">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pay_StausPay">
+          <End Role="StausPay" Type="Self.StausPay" Multiplicity="0..1" />
+          <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StausPay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pay">
+              <PropertyRef Name="id_stausPay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_Halls">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="0..1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="id_hall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_shedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tickets_TicketStatuses1">
+          <End Role="TicketStatuses" Type="Self.TicketStatuses" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="id_ticketStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TicketOfficeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CategoryEvents" EntityType="Self.CategoryEvents" />
+          <EntitySet Name="CategoryPlases" EntityType="Self.CategoryPlases" />
+          <EntitySet Name="CategoryTickets" EntityType="Self.CategoryTickets" />
+          <EntitySet Name="Events" EntityType="Self.Events" />
+          <EntitySet Name="Halls" EntityType="Self.Halls" />
+          <EntitySet Name="MethodPay" EntityType="Self.MethodPay" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
+          <EntitySet Name="OrderTickets" EntityType="Self.OrderTickets" />
+          <EntitySet Name="Organizers" EntityType="Self.Organizers" />
+          <EntitySet Name="Pay" EntityType="Self.Pay" />
+          <EntitySet Name="Plases" EntityType="Self.Plases" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="StausPay" EntityType="Self.StausPay" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" />
+          <EntitySet Name="TicketStatuses" EntityType="Self.TicketStatuses" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Events_CategoryEvents" Association="Self.FK_Events_CategoryEvents">
+            <End Role="CategoryEvents" EntitySet="CategoryEvents" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plases_CategoryPlases" Association="Self.FK_Plases_CategoryPlases">
+            <End Role="CategoryPlases" EntitySet="CategoryPlases" />
+            <End Role="Plases" EntitySet="Plases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_CategoryTickets" Association="Self.FK_Tickets_CategoryTickets">
+            <End Role="CategoryTickets" EntitySet="CategoryTickets" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Organizers" Association="Self.FK_Events_Organizers">
+            <End Role="Organizers" EntitySet="Organizers" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Events" Association="Self.FK_Schedule_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Halls_Plases" Association="Self.FK_Halls_Plases">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Plases" EntitySet="Plases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_MethodPay" Association="Self.FK_Pay_MethodPay">
+            <End Role="MethodPay" EntitySet="MethodPay" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OrderStatus" Association="Self.FK_Orders_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTickets_Orders" Association="Self.FK_OrderTickets_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderTickets" EntitySet="OrderTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_Orders" Association="Self.FK_Pay_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTickets_Tickets" Association="Self.FK_OrderTickets_Tickets">
+            <End Role="Tickets" EntitySet="Tickets" />
+            <End Role="OrderTickets" EntitySet="OrderTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pay_StausPay" Association="Self.FK_Pay_StausPay">
+            <End Role="StausPay" EntitySet="StausPay" />
+            <End Role="Pay" EntitySet="Pay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Halls" Association="Self.FK_Schedule_Halls">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_Schedule" Association="Self.FK_Tickets_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tickets_TicketStatuses1" Association="Self.FK_Tickets_TicketStatuses1">
+            <End Role="TicketStatuses" EntitySet="TicketStatuses" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TicketOfficeModelContainer" CdmEntityContainer="TicketOfficeEntities">
+          <EntitySetMapping Name="CategoryEvents">
+            <EntityTypeMapping TypeName="TicketOfficeModel.CategoryEvents">
+              <MappingFragment StoreEntitySet="CategoryEvents">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="categoryEvents1" ColumnName="categoryEvents" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryPlases">
+            <EntityTypeMapping TypeName="TicketOfficeModel.CategoryPlases">
+              <MappingFragment StoreEntitySet="CategoryPlases">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="categoryPlace" ColumnName="categoryPlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryTickets">
+            <EntityTypeMapping TypeName="TicketOfficeModel.CategoryTickets">
+              <MappingFragment StoreEntitySet="CategoryTickets">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="categoryTicket" ColumnName="categoryTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Events">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nameEvent" ColumnName="nameEvent" />
+                <ScalarProperty Name="id_categoryEvent" ColumnName="id_categoryEvent" />
+                <ScalarProperty Name="id_organizer" ColumnName="id_organizer" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Halls">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Halls">
+              <MappingFragment StoreEntitySet="Halls">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="hall" ColumnName="hall" />
+                <ScalarProperty Name="id_place" ColumnName="id_place" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MethodPay">
+            <EntityTypeMapping TypeName="TicketOfficeModel.MethodPay">
+              <MappingFragment StoreEntitySet="MethodPay">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="methodPay1" ColumnName="methodPay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="dateOrder" ColumnName="dateOrder" />
+                <ScalarProperty Name="sum" ColumnName="sum" />
+                <ScalarProperty Name="id_orderStatus" ColumnName="id_orderStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="TicketOfficeModel.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ticketStatuses" ColumnName="ticketStatuses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTickets">
+            <EntityTypeMapping TypeName="TicketOfficeModel.OrderTickets">
+              <MappingFragment StoreEntitySet="OrderTickets">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizers">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Organizers">
+              <MappingFragment StoreEntitySet="Organizers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="organizer" ColumnName="organizer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pay">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Pay">
+              <MappingFragment StoreEntitySet="Pay">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="datePay" ColumnName="datePay" />
+                <ScalarProperty Name="id_methodPay" ColumnName="id_methodPay" />
+                <ScalarProperty Name="id_stausPay" ColumnName="id_stausPay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plases">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Plases">
+              <MappingFragment StoreEntitySet="Plases">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="namePlace" ColumnName="namePlace" />
+                <ScalarProperty Name="id_categoryPlace" ColumnName="id_categoryPlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_hall" ColumnName="id_hall" />
+                <ScalarProperty Name="id_event" ColumnName="id_event" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StausPay">
+            <EntityTypeMapping TypeName="TicketOfficeModel.StausPay">
+              <MappingFragment StoreEntitySet="StausPay">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="statusPay" ColumnName="statusPay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TicketOfficeModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Tickets">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nameTicket" ColumnName="nameTicket" />
+                <ScalarProperty Name="id_categoryTicket" ColumnName="id_categoryTicket" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="row_number" ColumnName="row_number" />
+                <ScalarProperty Name="seat_number" ColumnName="seat_number" />
+                <ScalarProperty Name="id_ticketStatus" ColumnName="id_ticketStatus" />
+                <ScalarProperty Name="id_shedule" ColumnName="id_shedule" />
+                <ScalarProperty Name="oldPrice" ColumnName="oldPrice" />
+                <ScalarProperty Name="discountPercent" ColumnName="discountPercent" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketStatuses">
+            <EntityTypeMapping TypeName="TicketOfficeModel.TicketStatuses">
+              <MappingFragment StoreEntitySet="TicketStatuses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ticketStatus" ColumnName="ticketStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TicketOfficeModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fio" ColumnName="fio" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a031c427c857457d8af678655584d3f0" Name="Diagram1">
+        <EntityTypeShape EntityType="TicketOfficeModel.CategoryEvents" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.CategoryPlases" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.CategoryTickets" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Events" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Halls" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.MethodPay" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Orders" Width="1.5" PointX="7.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.OrderStatus" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.OrderTickets" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Organizers" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Pay" Width="1.5" PointX="9.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Plases" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Roles" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Schedule" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.StausPay" Width="1.5" PointX="7.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Tickets" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.TicketStatuses" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketOfficeModel.Users" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Events_CategoryEvents" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Plases_CategoryPlases" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Tickets_CategoryTickets" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Events_Organizers" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Schedule_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Plases_Halls" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Pay_MethodPay" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Orders_OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_OrderTickets_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Pay_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_OrderTickets_Tickets" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Pay_StausPay" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Schedule_Plases" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Tickets_Schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketOfficeModel.FK_Tickets_TicketStatuses1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
