@@ -26,9 +26,12 @@ namespace TicketOffice.AppData.Pages
 
             tbHello.Text = AppConnect.CurUser.fio;
 
-            if (AppConnect.CurUser.Roles != null)
+            // Название роли берем из справочника по коду роли
+            Roles role = AppConnect.model.Roles.FirstOrDefault(r => r.id == AppConnect.CurUser.id_role);
+
+            if (role != null)
             {
-                tbRole.Text = $"Роль: {AppConnect.CurUser.Roles.role}";
+                tbRole.Text = $"Роль: {role.role}";
             }
 
             // Таблицы БД доступны только менеджеру и администратору
@@ -70,6 +73,18 @@ namespace TicketOffice.AppData.Pages
             AppConnect.cart.Clear();
 
             NavigationService.Navigate(new Pages.Login());
+
+            // После выхода нельзя вернуться назад на страницы пользователя
+            Dispatcher.BeginInvoke(new Action(ClearHistory), System.Windows.Threading.DispatcherPriority.ContextIdle);
+        }
+
+        // Очистка истории переходов (выполняется после открытия страницы входа)
+        private void ClearHistory()
+        {
+            while (AppFrame.framemain.CanGoBack)
+            {
+                AppFrame.framemain.RemoveBackEntry();
+            }
         }
     }
 }

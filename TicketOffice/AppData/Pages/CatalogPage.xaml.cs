@@ -202,6 +202,28 @@ namespace TicketOffice.AppData.Pages
         {
             UpdateTickets();
             UpdateCartButton();
+            SetDateHint();
+        }
+
+        // Подсказка в поле даты на русском языке (по умолчанию она на английском)
+        private void SetDateHint()
+        {
+            dpDate.ApplyTemplate();
+            System.Windows.Controls.Primitives.DatePickerTextBox dateBox =
+                dpDate.Template.FindName("PART_TextBox", dpDate) as System.Windows.Controls.Primitives.DatePickerTextBox;
+
+            if (dateBox == null)
+            {
+                return;
+            }
+
+            dateBox.ApplyTemplate();
+            ContentControl hint = dateBox.Template.FindName("PART_Watermark", dateBox) as ContentControl;
+
+            if (hint != null)
+            {
+                hint.Content = "Дата";
+            }
         }
 
         private void btnCart_Click(object sender, RoutedEventArgs e)

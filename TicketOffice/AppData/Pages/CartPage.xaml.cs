@@ -109,7 +109,7 @@ namespace TicketOffice.AppData.Pages
                     payId = AppConnect.model.Pay.Max(p => p.id) + 1;
                 }
 
-                Orders order = new Orders();
+                Orders order = AppConnect.model.Orders.Create();
                 order.id = orderId;
                 order.id_user = AppConnect.CurUser.id;
                 order.dateOrder = DateTime.Today;
@@ -119,7 +119,7 @@ namespace TicketOffice.AppData.Pages
 
                 foreach (Tickets ticket in AppConnect.cart)
                 {
-                    OrderTickets orderTicket = new OrderTickets();
+                    OrderTickets orderTicket = AppConnect.model.OrderTickets.Create();
                     orderTicket.id = orderTicketId;
                     orderTicket.id_order = orderId;
                     orderTicket.id_ticket = ticket.id;
@@ -129,7 +129,7 @@ namespace TicketOffice.AppData.Pages
                     ticket.id_ticketStatus = AppConnect.TicketSold;
                 }
 
-                Pay pay = new Pay();
+                Pay pay = AppConnect.model.Pay.Create();
                 pay.id = payId;
                 pay.id_order = orderId;
                 pay.datePay = DateTime.Today.ToString("dd.MM.yyyy");

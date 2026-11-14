@@ -127,7 +127,7 @@ namespace TicketOffice.AppData.Pages
                     newId = AppConnect.model.Users.Max(u => u.id) + 1;
                 }
 
-                Users user = new Users();
+                Users user = AppConnect.model.Users.Create();
                 user.id = newId;
                 user.fio = fio;
                 user.mail = mail;

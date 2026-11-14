@@ -29,9 +29,12 @@ namespace TicketOffice.AppData.Pages
             tbNumber.Text = AppConnect.CurUser.number;
 
             // Роль только показываем, менять ее нельзя
-            if (AppConnect.CurUser.Roles != null)
+            // Название роли берем из справочника по коду роли
+            Roles role = AppConnect.model.Roles.FirstOrDefault(r => r.id == AppConnect.CurUser.id_role);
+
+            if (role != null)
             {
-                tbRole.Text = $"Роль: {AppConnect.CurUser.Roles.role}";
+                tbRole.Text = $"Роль: {role.role}";
             }
         }
 

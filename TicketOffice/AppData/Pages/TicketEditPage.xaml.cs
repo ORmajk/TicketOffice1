@@ -169,7 +169,7 @@ namespace TicketOffice.AppData.Pages
                         newId = AppConnect.model.Tickets.Max(t => t.id) + 1;
                     }
 
-                    curTicket = new Tickets();
+                    curTicket = AppConnect.model.Tickets.Create();
                     curTicket.id = newId;
                     AppConnect.model.Tickets.Add(curTicket);
                 }
